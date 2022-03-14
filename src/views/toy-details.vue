@@ -1,11 +1,12 @@
 <template>
-      </template>
+  about
+</template>
 
 <script>
 export default {
 
 }
-    </script>
+</script>
 
 <style>
 
