@@ -1,52 +1,8 @@
-.main-footer {
-    background-color: var(--clr4);
-}
-
-.main-footer .logo {
-    margin-block-start: 0;
-    color: #292929
-}
-
-.main-footer small {
-    letter-spacing: 0.05rem;
-    color: #939292;
-    text-align: center;
-}
-
-.main-footer .social-nav {
-    gap: 1.25rem;
-    padding-bottom: 80px;
-    padding-top: 37px;
-}
-
-.social-nav .fa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: content-box;
-    width: 35px;
-    height: 30px;
-    text-decoration: none;
-    background-color: #E5E5E5;
-    font-size: 0.8rem;
-}
-
-.social-nav a {
-    color: white;
-}
-
-.social-nav .fa-facebook:hover {
-    background-color: #3B5998;
-}
-
-.social-nav .fa-twitter:hover {
-    background-color: #55ACEE;
-}
-
-.social-nav .fa-behance:hover {
-    background-color: black;
-}
-
-.social-nav .fa-dribbble:hover {
-    background-color: #ea4c89;
+.app-footer {
+  height: 10vh;
+  background-color: rgb(211, 156, 94);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

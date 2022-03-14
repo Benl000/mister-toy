@@ -12,8 +12,10 @@ export default {
     appHeader,
     appFooter,
   },
+  created() {
+    this.$store.dispatch({ type: "loadToys" });
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

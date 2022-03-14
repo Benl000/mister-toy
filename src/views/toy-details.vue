@@ -1,13 +1,9 @@
 <template>
-  about
+  <section class="toy-details page-layout">details</section>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>
