@@ -1,0 +1,14 @@
+.toy-list ul {
+  padding-inline-start: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+}
+
+.toy-list li {
+  list-style: none;
+}

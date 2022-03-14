@@ -11,3 +11,9 @@
 
 @import "components/main-header.css";
 @import "components/main-footer.css";
+@import "components/toy-list.css";
+@import "components/toy-preview.css";
+
+/* PAGES */
+
+@import "components/toy-details.css";

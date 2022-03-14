@@ -13,15 +13,15 @@ export default {
     setToys(state, { toys }) {
       state.toys = toys;
     },
-    // removeToy(state, { id }) {
-    //   const idx = state.toys.findIndex((toy) => toy.id === id);
-    //   state.toys.splice(idx, 1);
-    // },
-    // saveToy(state, { toy }) {
-    //   const idx = state.toys.findIndex((currToy) => currToy.id === toy.id);
-    //   if (idx !== -1) state.toys.splice(idx, 1, toy);
-    //   else state.toys.push(toy);
-    // },
+    removeToy(state, { id }) {
+      const idx = state.toys.findIndex((toy) => toy._id === id);
+      state.toys.splice(idx, 1);
+    },
+    saveToy(state, { toy }) {
+      const idx = state.toys.findIndex((currToy) => currToy._id === toy._id);
+      if (idx !== -1) state.toys.splice(idx, 1, toy);
+      else state.toys.push(toy);
+    },
   },
   actions: {
     loadToys({ commit }) {
@@ -29,15 +29,20 @@ export default {
         commit({ type: "setToys", toys });
       });
     },
-    // removeToy({ commit }, { id }) {
-    //   toyService.remove(id).then(() => {
-    //     commit({ type: "removeToy", id });
-    //   });
-    // },
-    // saveToy({ commit }, { toy }) {
-    //   toyService.save(toy).then((toy) => {
-    //     commit({ type: "saveToy", toy });
-    //   });
-    // },
+    getToy(context, { id }) {
+      if (id) return toyService.getById(id);
+      else return toyService.getEmptyToy();
+    },
+    removeToy({ commit }, { id }) {
+      toyService.remove(id).then(() => {
+        commit({ type: "removeToy", id });
+      });
+    },
+    saveToy({ commit }, { toy }) {
+      console.log("toy is:", toy);
+      toyService.save(toy).then((toy) => {
+        commit({ type: "saveToy", toy });
+      });
+    },
   },
 };

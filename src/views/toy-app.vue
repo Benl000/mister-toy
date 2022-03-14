@@ -1,11 +1,10 @@
 <template>
   <section class="toy-app page-layout">
-    <toy-list v-if="toys" :toys="toys"></toy-list>
+    <toy-list @removeToy="removeToy" v-if="toys" :toys="toys"></toy-list>
   </section>
 </template>
 
 <script>
-import { toyService } from "../service/toy-service.js";
 import toyList from "../components/toy-list.vue";
 
 export default {
@@ -17,9 +16,7 @@ export default {
   },
   computed: {
     toys() {
-      const x = this.$store.getters.toys;
-      console.log(x);
-      return x;
+      return this.$store.getters.toys;
     },
     // toysToShow() {
     //   if (!this.filterBy) return this.toys;
@@ -30,7 +27,9 @@ export default {
   created() {},
   methods: {
     loadToys() {
-      toyService.query().then((toys) => (this.toys = toys));
+      this.$store
+        .dispatch({ type: "loadToys" })
+        .then((toys) => (this.toys = toys));
     },
     // setFilter(filterBy) {
     //   this.filterBy = filterBy;
@@ -38,9 +37,9 @@ export default {
     // goToEdit() {
     //   this.$router.push(`/toy/edit`);
     // },
-    // removeToy(toyId) {
-    //   this.$store.dispatch({ type: "removeToy", id: toyId });
-    // },
+    removeToy(toyId) {
+      this.$store.dispatch({ type: "removeToy", id: toyId });
+    },
   },
   components: {
     toyList,
