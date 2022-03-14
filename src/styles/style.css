@@ -1,12 +1,13 @@
-* {
-    box-sizing: border-box;
-}
+/* SETUP  */
 
-body {
-    margin: 0;
-    background-color: rgb(211, 156, 94);
-}
+@import "setup/vars.css";
 
-h1, h2, h3, h4, h5, h6, pre, p {
-    margin: 0
-}
+/* BASE */
+
+@import "basic/base.css";
+@import "basic/layout.css";
+
+/* COMPONENTS */
+
+@import "components/main-header.css";
+@import "components/main-footer.css";
