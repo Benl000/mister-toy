@@ -9,6 +9,22 @@ export default {
     toys(state) {
       return state.toys;
     },
+    sortToysForDisplay(state) {
+      var changeDir = state.currentFilterBy.order;
+      var sortBy = state.currentFilterBy.sort;
+      if (sortBy === "Name")
+        return state.toys.sort(
+          (a, b) =>
+            (a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1) * changeDir
+        );
+      else if (sortBy === "Price")
+        return state.toys.sort((a, b) => (a.price - b.price) * changeDir);
+      else if (sortBy === "Time")
+        return state.toys.sort(
+          (a, b) => (a.createdAt - b.createdAt) * changeDir
+        );
+      else return state.toys;
+    },
     toysForDisplay(state) {
       const storeFilter = state.currentFilterBy;
       if (!storeFilter) return state.toys;
