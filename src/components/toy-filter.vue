@@ -4,7 +4,7 @@
       text:
       <input
         v-model="filterBy.txt"
-        @input="setFilter"
+        @input="setFilterDebounced"
         type="text"
         name="Search"
         id="Search"
@@ -71,6 +71,9 @@
 <script>
 export default {
   name: "toy-filter",
+  created() {
+    this.setFilterDebounced = this.debounce(this.setFilter, 3000);
+  },
   data() {
     return {
       filterBy: {
@@ -83,9 +86,24 @@ export default {
     };
   },
   methods: {
+    setFilterDebounced() {},
     setFilter() {
       this.$emit("setFilter", JSON.parse(JSON.stringify(this.filterBy)));
     },
+    debounce(func, wait) {
+      let timeout;
+
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    },
+    computed: {},
   },
 };
 </script>

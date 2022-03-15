@@ -1,8 +1,12 @@
 <template>
-  <section class="toy-preview">
+  <section class="toy-preview" v-if="toy">
     <h2>{{ toy.name }}</h2>
     <h3>Price:{{ toy.price }}</h3>
-    <h3>Type:{{ toy.type }}</h3>
+    <ul>
+      <li v-for="label in toy.labels" :key="label">
+        <h5>{{ label }}</h5>
+      </li>
+    </ul>
     <h3>In stock:{{ toy.inStock }}</h3>
     <div class="toy-btns">
       <button @click="goToEdit">📝edit</button>
@@ -19,6 +23,9 @@ export default {
     toy: Object,
   },
   components: {},
+  created() {
+    console.log("toy", this.toy);
+  },
   methods: {
     goToDetail() {
       this.$router.push(`/toy/${this.toy._id}`);

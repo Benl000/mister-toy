@@ -1,0 +1,25 @@
+.toy-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.toy-about .info {
+  display: flex;
+  padding: 40px;
+  text-align: center;
+  flex-direction: column;
+}
+
+.toy-about img {
+  height: 76vh;
+  margin-top: 4vh;
+  width: fit-content;
+}
+
+@media (max-width: 980px) {
+  .toy-about {
+    flex-direction: column-reverse;
+  }
+}

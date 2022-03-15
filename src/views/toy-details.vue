@@ -3,7 +3,7 @@
     <p>Name: {{ toy.name }}</p>
     <p>Date: {{ getDate }}</p>
     <p>Price: {{ toy.price }}</p>
-    <p>Type: {{ toy.type }}</p>
+    <p>Labels: {{ toy.labels }}</p>
     <p>In stock: {{ toy.inStock }}</p>
     <button @click="goBack">go back</button>
   </section>

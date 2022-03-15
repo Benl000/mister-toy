@@ -1,19 +1,20 @@
 /* SETUP  */
 
-@import "setup/vars.css";
+@import "./setup/vars.css";
 
 /* BASE */
 
-@import "basic/base.css";
-@import "basic/layout.css";
+@import "./basic/base.css";
+@import "./basic/layout.css";
 
 /* COMPONENTS */
 
-@import "components/main-header.css";
-@import "components/main-footer.css";
-@import "components/toy-list.css";
-@import "components/toy-preview.css";
+@import "./components/main-header.css";
+@import "./components/main-footer.css";
+@import "./components/toy-list.css";
+@import "./components/toy-preview.css";
 
 /* PAGES */
 
-@import "components/toy-details.css";
+@import "./components/toy-details.css";
+@import "./components/toy-about.css";

@@ -1,6 +1,6 @@
 .app-header {
   height: 10vh;
-  background-color: rgb(211, 156, 94);
+  background-color: var(--clr1);
   text-align: center;
   display: flex;
   align-items: center;

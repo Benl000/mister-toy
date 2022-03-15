@@ -3,8 +3,8 @@
     <toy-filter @setFilter="setFilter" />
     <toy-list
       @removeToy="removeToy"
-      v-if="toys"
-      :toys="toysForDisplay"
+      v-if="toys && toys.length"
+      :toys="toys"
     ></toy-list>
   </section>
 </template>
@@ -22,9 +22,9 @@ export default {
     toys() {
       return this.$store.getters.toys;
     },
-    toysForDisplay() {
-      return this.$store.getters.toysForDisplay;
-    },
+    // toysForDisplay() {
+    //   return this.$store.getters.toysForDisplay;
+    // },
   },
   created() {},
   methods: {
@@ -35,7 +35,7 @@ export default {
     },
     setFilter(filterBy) {
       this.$store.dispatch({
-        type: "changedFilter",
+        type: "setFilterBy",
         filterBy,
       });
     },
