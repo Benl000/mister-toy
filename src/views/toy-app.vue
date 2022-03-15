@@ -1,28 +1,30 @@
 <template>
   <section class="toy-app page-layout">
-    <toy-list @removeToy="removeToy" v-if="toys" :toys="toys"></toy-list>
+    <toy-filter @setFilter="setFilter" />
+    <toy-list
+      @removeToy="removeToy"
+      v-if="toys"
+      :toys="toysForDisplay"
+    ></toy-list>
   </section>
 </template>
 
 <script>
 import toyList from "../components/toy-list.vue";
+import toyFilter from "../components/toy-filter.vue";
 
 export default {
   name: "toy-app",
   data() {
-    return {
-      filterBy: null,
-    };
+    return {};
   },
   computed: {
     toys() {
       return this.$store.getters.toys;
     },
-    // toysToShow() {
-    //   if (!this.filterBy) return this.toys;
-    //   const regex = new RegExp(this.filterBy.vendor, "i");
-    //   return this.toys.filter((toy) => regex.test(toy.vendor));
-    // },
+    toysForDisplay() {
+      return this.$store.getters.toysForDisplay;
+    },
   },
   created() {},
   methods: {
@@ -31,9 +33,12 @@ export default {
         .dispatch({ type: "loadToys" })
         .then((toys) => (this.toys = toys));
     },
-    // setFilter(filterBy) {
-    //   this.filterBy = filterBy;
-    // },
+    setFilter(filterBy) {
+      this.$store.dispatch({
+        type: "changedFilter",
+        filterBy,
+      });
+    },
     // goToEdit() {
     //   this.$router.push(`/toy/edit`);
     // },
@@ -43,7 +48,7 @@ export default {
   },
   components: {
     toyList,
-    // toyFilter,
+    toyFilter,
   },
 };
 </script>
