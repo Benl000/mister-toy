@@ -33,7 +33,7 @@
         name="multiple-select"
         multiple
       >
-        <option value=""></option>
+        <option value="All"></option>
         <option value="On wheels">On wheels</option>
         <option value="Box game">Box game</option>
         <option value="Art">Art</option>
@@ -103,7 +103,6 @@ export default {
         timeout = setTimeout(later, wait);
       };
     },
-    computed: {},
   },
 };
 </script>

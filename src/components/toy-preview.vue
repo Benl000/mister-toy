@@ -23,9 +23,6 @@ export default {
     toy: Object,
   },
   components: {},
-  created() {
-    console.log("toy", this.toy);
-  },
   methods: {
     goToDetail() {
       this.$router.push(`/toy/${this.toy._id}`);
