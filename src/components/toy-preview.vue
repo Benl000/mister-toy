@@ -8,6 +8,7 @@
       </li>
     </ul>
     <h3>In stock:{{ toy.inStock }}</h3>
+    <h4>Date: {{ getDate }}</h4>
     <div class="toy-btns">
       <button @click="goToEdit">📝edit</button>
       <button @click="goToDetail">📑details</button>
@@ -32,6 +33,11 @@ export default {
     },
     removeToy(toyId) {
       this.$emit("removeToy", toyId);
+    },
+  },
+  computed: {
+    getDate() {
+      return new Date(this.toy.createdAt).toDateString();
     },
   },
 };

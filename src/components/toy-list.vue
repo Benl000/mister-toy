@@ -1,6 +1,6 @@
 <template>
   <section class="toy-list">
-    <ul>
+    <ul class="toy-list-ul">
       <li v-for="toy in toys" :key="toy._id">
         <toy-preview :toy="toy" @removeToy="removeToy" />
       </li>
