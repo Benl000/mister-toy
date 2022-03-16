@@ -33,7 +33,7 @@
         name="multiple-select"
         multiple
       >
-        <option value="All"></option>
+        <option value="All">All</option>
         <option value="On wheels">On wheels</option>
         <option value="Box game">Box game</option>
         <option value="Art">Art</option>

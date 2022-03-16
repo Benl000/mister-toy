@@ -1,0 +1,20 @@
+/* SETUP  */
+
+@import "./setup/vars";
+
+/* BASE */
+
+@import "./basic/base";
+@import "./basic/layout";
+
+/* COMPONENTS */
+
+@import "./components/main-header";
+@import "./components/main-footer";
+@import "./components/toy-list";
+@import "./components/toy-preview";
+
+/* PAGES */
+
+@import "./components/toy-details";
+@import "./components/toy-about";
