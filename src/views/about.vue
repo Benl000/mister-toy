@@ -1,6 +1,6 @@
 <template>
   <section class="toy-about page-layout">
-    <img class="netta" src="../styles/img/netta.png" alt="netta" />
+    <img class="netta" src="./../styles/img/netta.png" alt="netta" />
     <section class="info">
       <h1>Ben Lutenberg</h1>
       <p>
