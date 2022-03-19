@@ -29,10 +29,13 @@ export default {
   },
   created() {},
   methods: {
-    loadToys() {
-      this.$store
-        .dispatch({ type: "loadToys" })
-        .then((toys) => (this.toys = toys));
+    async loadToys() {
+      try {
+        await this.$store.dispatch({ type: "loadToys" });
+        this.toys = toys;
+      } catch (err) {
+        console.log("err", err);
+      }
     },
     setFilter(filterBy) {
       this.$store.dispatch({

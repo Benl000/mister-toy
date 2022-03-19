@@ -21,23 +21,32 @@ export default {
       toyToEdit: null,
     };
   },
-  created() {
-    const { toyId } = this.$route.params;
-    this.$store.dispatch({ type: "getToy", id: +toyId }).then((toy) => {
-      this.toyToEdit = toy;
-    });
+  async created() {
+    try {
+      const { toyId } = this.$route.params;
+      this.toyToEdit = await this.$store.dispatch({
+        type: "getToy",
+        id: toyId,
+      });
+    } catch (err) {
+      console.log("err", err);
+    }
   },
   computed: {},
   methods: {
     goBack() {
       this.$router.push("/toy");
     },
-    saveToy() {
-      this.$store
-        .dispatch({ type: "saveToy", toy: this.toyToEdit })
-        .then(() => {
-          this.$router.push("/toy");
+    async saveToy() {
+      try {
+        await this.$store.dispatch({
+          type: "saveToy",
+          toy: JSON.parse(JSON.stringify(this.toyToEdit)),
         });
+        this.$router.push("/toy");
+      } catch (err) {
+        console.log("err", err);
+      }
     },
   },
 };

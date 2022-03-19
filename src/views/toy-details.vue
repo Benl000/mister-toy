@@ -17,11 +17,14 @@ export default {
       toy: null,
     };
   },
-  created() {
-    const { toyId } = this.$route.params;
-    this.$store.dispatch({ type: "getToy", id: +toyId }).then((toy) => {
+  async created() {
+    try {
+      const { toyId } = this.$route.params;
+      const toy = await this.$store.dispatch({ type: "getToy", id: toyId });
       this.toy = toy;
-    });
+    } catch (err) {
+      console.log("err", err);
+    }
   },
   computed: {
     getDate() {

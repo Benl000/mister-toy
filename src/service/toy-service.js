@@ -9,20 +9,28 @@ export const toyService = {
   save,
   getEmptyToy,
 };
+
 const BASE_URL =
   process.env.NODE_ENV !== "development"
-    ? "/api/toy"
-    : "//localhost:3030/api/toy";
+    ? "/api/toy/"
+    : "//localhost:3030/api/toy/";
 
-function query(filterBy) {
-  return axios
-    .get(BASE_URL, { params: filterBy })
-    .then((res) => res.data)
-    .catch((err) => console.log("error:", err));
+async function query(filterBy) {
+  try {
+    const res = await axios.get(BASE_URL, { params: filterBy });
+    return res.data;
+  } catch (err) {
+    console.log("error:", err);
+  }
 }
 
-function getById(id) {
-  return axios.get(BASE_URL + id).then((res) => res.data);
+async function getById(id) {
+  try {
+    const res = await axios.get(BASE_URL + id);
+    return res.data;
+  } catch {
+    console.log("error:", err);
+  }
 }
 
 function remove(id) {
@@ -30,8 +38,8 @@ function remove(id) {
 }
 
 function save(toy) {
-  const toyToSave = JSON.parse(JSON.stringify(toy));
-  const savedToy = toyToSave._id
+  console.log("toy", toy);
+  const savedToy = toy._id
     ? axios.put(BASE_URL + toy._id, toy)
     : axios.post(BASE_URL, toy);
   return savedToy;
@@ -39,7 +47,6 @@ function save(toy) {
 
 function getEmptyToy(name = "", price = "", labels = [], inStock = true) {
   return {
-    _id: "",
     name,
     price,
     labels,
