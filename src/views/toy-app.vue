@@ -1,6 +1,5 @@
 <template>
   <section class="toy-app page-layout">
-    <button @click="newToy">Add a new toy</button>
     <toy-filter @setFilter="setFilter" />
     <toy-list
       @removeToy="removeToy"
@@ -42,9 +41,6 @@ export default {
         type: "setFilterBy",
         filterBy,
       });
-    },
-    newToy() {
-      this.$router.push(`/toy/edit`);
     },
     removeToy(toyId) {
       this.$store.dispatch({ type: "removeToy", id: toyId });

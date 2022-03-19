@@ -1,74 +1,104 @@
 <template>
   <section v-if="filterBy" class="toy-filter">
-    <label for="Search">
-      text:
-      <input
-        v-model="filterBy.txt"
-        @input="setFilterDebounced"
-        type="text"
-        name="Search"
-        id="Search"
-        placeholder="Search..."
-      />
-    </label>
-    <label for="filterInStock">
-      stock:
-      <select
-        @change="setFilter"
-        v-model="filterBy.inStock"
-        name="filterInStock"
-        id="filterInStock"
+    <br />
+    <div class="filterBtns">
+      <label for="Search">
+        text:
+        <el-input
+          name="Search"
+          id="Search"
+          type="text"
+          size="large"
+          @input="setFilterDebounced"
+          v-model="filterBy.txt"
+          style="width: 300px"
+          placeholder="Search..."
+          clearable
+        />
+      </label>
+      <label for="filterInStock">
+        stock:
+        <el-select
+          @change="setFilter"
+          v-model="filterBy.inStock"
+          class="m-2"
+          placeholder="Select"
+          size="large"
+        >
+          <el-option
+            v-for="item in stackOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </label>
+      <label for="multiple-select"
+        >labels:
+        <el-select
+          multiple
+          v-model="filterBy.label"
+          @change="setFilter"
+          placeholder="Enter labels"
+          id="multiple-select"
+          name="multiple-select"
+          style="width: 240px"
+        >
+          <el-option
+            v-for="item in labelsOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </label>
+    </div>
+    <br />
+    <div class="filterBtns">
+      <label for="filterSort"
+        >sort by:
+        <el-select
+          @change="setFilter"
+          v-model="filterBy.sort"
+          name="filterSort"
+          id="filterSort"
+          size="large"
+        >
+          <el-option
+            v-for="item in sortOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </label>
+      <label for="filterOrder"
+        >sort diraction:
+        <el-select
+          @change="setFilter"
+          v-model="filterBy.order"
+          name="filterOrder"
+          id="filterOrder"
+          size="large"
+        >
+          <el-option
+            v-for="item in orderOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </label>
+      <el-button @click="newToy" type="primary" size="large" round>
+        + Add a new toy</el-button
       >
-        <option value="All">All</option>
-        <option value="In">In stock</option>
-        <option value="Out">Out of stock</option>
-      </select>
-    </label>
-    <label for="multiple-select"
-      >labels:
-      <select
-        @change="setFilter"
-        v-model="filterBy.label"
-        id="multiple-select"
-        name="multiple-select"
-        multiple
-      >
-        <option value="All">All</option>
-        <option value="On wheels">On wheels</option>
-        <option value="Box game">Box game</option>
-        <option value="Art">Art</option>
-        <option value="Baby">Baby</option>
-        <option value="Doll">Doll</option>
-        <option value="Puzzle">Puzzle</option>
-        <option value="Outdoor">Outdoor</option>
-      </select>
-    </label>
-    <label for="filterSort"
-      >sort by:
-      <select
-        @change="setFilter"
-        v-model="filterBy.sort"
-        name="filterSort"
-        id="filterSort"
-      >
-        <option value="Name">Name</option>
-        <option value="Price">Price</option>
-        <option value="Time">Latest</option>
-      </select>
-      <select
-        @change="setFilter"
-        v-model="filterBy.order"
-        name="filterOrder"
-        id="filterOrder"
-      >
-        <option type="number" value="1">first to last</option>
-        <option type="number" value="-1">last to first</option>
-      </select>
-    </label>
+    </div>
   </section>
 </template>
 
 <script>
+import { ref } from "vue";
+const value = ref("");
 export default {
   name: "toy-filter",
   created() {
@@ -83,12 +113,87 @@ export default {
         sort: "Name",
         order: 1,
       },
+      stackOptions: [
+        {
+          value: "All",
+          label: "All",
+        },
+        {
+          value: "In",
+          label: "In stock",
+        },
+        {
+          value: "Out",
+          label: "Out of stock",
+        },
+      ],
+      labelsOptions: [
+        {
+          value: "All",
+          label: "All",
+        },
+        {
+          value: "On wheels",
+          label: "On wheels",
+        },
+        {
+          value: "Box game",
+          label: "Box game",
+        },
+        {
+          value: "Art",
+          label: "Art",
+        },
+        {
+          value: "Baby",
+          label: "Baby",
+        },
+        {
+          value: "Doll",
+          label: "Doll",
+        },
+        {
+          value: "Puzzle",
+          label: "Puzzle",
+        },
+        {
+          value: "Outdoor",
+          label: "Outdoor",
+        },
+      ],
+      sortOptions: [
+        {
+          value: "Name",
+          label: "Name",
+        },
+        {
+          value: "Price",
+          label: "Price",
+        },
+        {
+          value: "Time",
+          label: "Time",
+        },
+      ],
+      orderOptions: [
+        {
+          value: "1",
+          label: "first to last",
+        },
+        {
+          value: "-1",
+          label: "last to first",
+        },
+      ],
     };
   },
   methods: {
     setFilterDebounced() {},
     setFilter() {
       this.$emit("setFilter", JSON.parse(JSON.stringify(this.filterBy)));
+    },
+    newToy() {
+      this.$router.push(`/toy/edit`);
     },
     debounce(func, wait) {
       let timeout;

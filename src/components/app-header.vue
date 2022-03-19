@@ -2,13 +2,13 @@
   <section class="app-header">
     <h1>🪁🧸Mister Toy🎈🪀</h1>
     <router-link to="/">
-      <button>HOME</button>
+      <el-button type="primary" size="large" round>HOME</el-button>
     </router-link>
     <router-link to="/toy">
-      <button>SHOP</button>
+      <el-button type="primary" size="large" round>SHOP</el-button>
     </router-link>
     <router-link to="/about">
-      <button>ABOUT</button>
+      <el-button type="primary" size="large" round>ABOUT</el-button>
     </router-link>
   </section>
 </template>

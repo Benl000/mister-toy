@@ -9,11 +9,22 @@
     </ul>
     <h3>In stock:{{ toy.inStock }}</h3>
     <h4>Date: {{ getDate }}</h4>
-    <div class="toy-btns">
-      <button @click="goToEdit">📝edit</button>
-      <button @click="goToDetail">📑details</button>
-      <button @click="removeToy(toy._id)">🗑delete</button>
-    </div>
+    <!-- <div class="toy-btns">
+      <button>edit</button>
+      <button>📑details</button>
+      <button>🗑delete</button>
+    </div> -->
+    <el-row class="toy-btns">
+      <el-button title="Edit" type="primary" @click="goToEdit" circle
+        >📝</el-button
+      >
+      <el-button title="Detail" type="success" @click="goToDetail" circle
+        >📑</el-button
+      >
+      <el-button type="danger" title="Delete" @click="removeToy(toy._id)" circle
+        >🧺</el-button
+      >
+    </el-row>
   </section>
 </template>
 
@@ -22,6 +33,9 @@ export default {
   name: "toy-preview",
   props: {
     toy: Object,
+  },
+  data() {
+    return {};
   },
   components: {},
   methods: {

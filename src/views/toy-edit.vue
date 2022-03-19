@@ -1,15 +1,72 @@
 <template>
   <section v-if="toyToEdit" class="toy-edit page-layout">
     <form @submit.prevent="saveToy">
-      <input type="text" v-model="toyToEdit.name" placeholder="name" />
-      <input type="number" v-model="toyToEdit.price" placeholder="price" />
-      <input type="text" v-model="toyToEdit.type" placeholder="type" />
-      <label for="inStock">
-        <input name="inStock" type="checkbox" v-model="toyToEdit.inStock" />
+      <br />
+      <label for="name">
+        name:
+        <br />
+        <el-input
+          id="name"
+          type="text"
+          size="large"
+          v-model="toyToEdit.name"
+          style="width: 300px"
+          placeholder="Please input name"
+          clearable
+        />
       </label>
-      <button>Save</button>
+      <br />
+      <br />
+      <label for="price">
+        price:
+        <br />
+        <el-input-number
+          v-model="toyToEdit.price"
+          id="price"
+          type="number"
+          placeholder="price"
+          :step="1"
+          size="large"
+          step-strictly
+        />
+      </label>
+      <br />
+      <br />
+      <el-checkbox
+        label=" in stock"
+        v-model="toyToEdit.inStock"
+        size="large"
+        border
+      />
+      <br />
+      <br />
+      <label for="multiple-select"
+        >labels:
+        <br />
+        <el-select
+          multiple
+          v-model="toyToEdit.labels"
+          placeholder="Select labels"
+          style="width: 240px"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </label>
+      <br />
+      <br />
+      <el-button @click="saveToy" type="primary" size="large" round
+        >Save</el-button
+      >
     </form>
-    <button @click="goBack">go back</button>
+    <br />
+    <el-button type="info" @click="goBack" size="small" plain
+      >go back</el-button
+    >
   </section>
 </template>
 
@@ -19,6 +76,36 @@ export default {
   data() {
     return {
       toyToEdit: null,
+      options: [
+        {
+          value: "On wheels",
+          label: "On wheels",
+        },
+        {
+          value: "Box game",
+          label: "Box game",
+        },
+        {
+          value: "Art",
+          label: "Art",
+        },
+        {
+          value: "Baby",
+          label: "Baby",
+        },
+        {
+          value: "Doll",
+          label: "Doll",
+        },
+        {
+          value: "Puzzle",
+          label: "Puzzle",
+        },
+        {
+          value: "Outdoor",
+          label: "Outdoor",
+        },
+      ],
     };
   },
   async created() {

@@ -5,7 +5,9 @@
     <p>Price: {{ toy.price }}</p>
     <p>Labels: {{ toy.labels }}</p>
     <p>In stock: {{ toy.inStock }}</p>
-    <button @click="goBack">go back</button>
+    <el-button type="info" @click="goBack" size="small" plain
+      >go back</el-button
+    >
   </section>
 </template>
 
@@ -20,8 +22,7 @@ export default {
   async created() {
     try {
       const { toyId } = this.$route.params;
-      const toy = await this.$store.dispatch({ type: "getToy", id: toyId });
-      this.toy = toy;
+      this.toy = await this.$store.dispatch({ type: "getToy", id: toyId });
     } catch (err) {
       console.log("err", err);
     }

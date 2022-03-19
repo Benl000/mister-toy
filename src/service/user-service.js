@@ -1,41 +1,40 @@
-import { storageService } from "./storage.service.js"
+import { utilService } from "./util-service.js";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
-const STORAGE_KEY = 'loggedinUser'
+const KEY = "loggedInUser";
+const AUTH_URL = "//localhost:3030/api/auth/";
 
 export const userService = {
-    getLoggedinUser,
-    updateBalance,
-    addOrder,
-    changeOrderStatus
+  login,
+  logOut,
+  signUp,
+};
+
+async function login({ username, password }) {
+  try {
+    const res = await axios.post(AUTH_URL + "login", { username, password });
+    utilService.saveToStorage(KEY, res.data);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
 }
 
-
-login()
-
-function login() {
-    const user = {fullname: 'Puki', balance: 200, orders: []}  
-    storageService.store(STORAGE_KEY, user)  
+async function logOut({ username, password }) {
+  try {
+    const res = await axios.get(AUTH_URL, { body: { username, password } });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function getLoggedinUser() {
-    return storageService.load(STORAGE_KEY)
-}
-
-function updateBalance(amount) {
-    const user = getLoggedinUser();
-    if (user.balance < amount) return
-    user.balance += amount    
-    storageService.store(STORAGE_KEY, user) 
-}
-function addOrder(order) {
-    const user = getLoggedinUser();
-    user.orders.unshift(order)
-    storageService.store(STORAGE_KEY, user) 
-}
-
-function changeOrderStatus(orderId, status) {
-    const user = getLoggedinUser();
-    const order = user.orders.find(order => order._id === orderId)
-    order.status = status
-    storageService.store(STORAGE_KEY, user) 
+async function signUp({ username, password }) {
+  try {
+    const res = await axios.get(AUTH_URL, { body: { username, password } });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
 }

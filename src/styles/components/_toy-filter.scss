@@ -1,0 +1,20 @@
+.toy-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toy-filter .filterBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+@media (max-width: 1000px) {
+  .toy-filter .filterBtns {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+}
