@@ -1,17 +1,17 @@
 <template>
-  <section v-if="toy" class="toy-details page-layout">
+  <section v-if="user" class="user-details page-layout">
     <el-button type="info" @click="goBack" size="small" plain
       >go back</el-button
     >
     <div>
-      <img class="details-img" :src="toy.imgUrl" alt="" />
+      <img class="details-img" :src="toy.imgUrl" alt="user" />
     </div>
     <div class="card">
-      <p>Name: {{ toy.name }}</p>
-      <p>Date: {{ getDate }}</p>
+      <p>Name: {{ user.fullname }}</p>
+      <!-- <p>Date: {{ getDate }}</p>
       <p>Price: {{ toy.price }}</p>
       <p>Labels: {{ toy.labels }}</p>
-      <p>In stock: {{ toy.inStock }}</p>
+      <p>In stock: {{ toy.inStock }}</p> -->
     </div>
     <pre v-if="reviews">{{ reviews }}</pre>
   </section>
@@ -19,10 +19,10 @@
 
 <script>
 export default {
-  name: "toy-detail",
+  name: "user-detail",
   data() {
     return {
-      toy: null,
+      user: null,
       reviews: null,
     };
   },
@@ -38,11 +38,7 @@ export default {
       console.log("err", err);
     }
   },
-  computed: {
-    getDate() {
-      return new Date(this.toy.createdAt).toDateString();
-    },
-  },
+  computed: {},
   methods: {
     goBack() {
       this.$router.push("/toy");

@@ -1,6 +1,21 @@
 .toy-details {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.toy-details .card {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: var(--clr3);
+  width: 400px;
+  height: 200px;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.toy-details .details-img {
+  max-width: 400px;
 }

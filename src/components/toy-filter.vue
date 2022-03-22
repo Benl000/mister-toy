@@ -60,6 +60,7 @@
         <el-select
           @change="setFilter"
           v-model="filterBy.sort"
+          default-first-option
           name="filterSort"
           id="filterSort"
           size="large"

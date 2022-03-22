@@ -26,7 +26,9 @@ export default {
       state.toys.splice(idx, 1);
     },
     saveToy(state, { toy }) {
+      console.log("toyyy", toy);
       const idx = state.toys.findIndex((currToy) => currToy._id === toy._id);
+      console.log(idx);
       if (idx !== -1) state.toys.splice(idx, 1, toy);
       else state.toys.push(toy);
     },
@@ -63,8 +65,11 @@ export default {
     },
     async saveToy({ commit }, { toy }) {
       try {
-        await toyService.save(toy);
-        commit({ type: "saveToy", toy });
+        const x = await toyService.save(toy);
+        // toy._id = x.data.insertedId;
+        // console.log("step 1", x);
+        commit({ type: "saveToy", toy: x.data });
+        return toy;
       } catch (err) {
         console.log("err is:", err);
       }

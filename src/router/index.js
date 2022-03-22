@@ -4,6 +4,7 @@ import about from "../views/about.vue";
 import toyApp from "../views/toy-app.vue";
 import toyDetails from "../views/toy-details.vue";
 import toyEdit from "../views/toy-edit.vue";
+import userDetails from "../views/user-details.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: about,
+    },
+    {
+      path: "/user/:userId?",
+      name: "user-details",
+      component: userDetails,
     },
     {
       path: "/toy",

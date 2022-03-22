@@ -4,8 +4,10 @@
   align-items: center;
   background-color: var(--clr3);
   width: 200px;
-  height: 200px;
-  justify-content: space-around;
+  height: 390px;
+  justify-content: space-between;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .toy-preview ul {
@@ -14,4 +16,9 @@
 
 .toy-preview li {
   text-align: center;
+}
+
+.toy-preview .preview-img {
+  width: 160px;
+  height: 160px;
 }

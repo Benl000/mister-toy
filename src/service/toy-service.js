@@ -1,6 +1,8 @@
 import axios from "axios";
+import { httpService } from "./http.service.js";
 
 const KEY = "toyDB";
+const ENDPOINT = "toy";
 
 export const toyService = {
   query,
@@ -16,36 +18,24 @@ const BASE_URL =
     : "//localhost:3030/api/toy/";
 
 async function query(filterBy) {
-  try {
-    const res = await axios.get(BASE_URL, { params: filterBy });
-    return res.data;
-  } catch (err) {
-    console.log("error:", err);
-  }
+  return await httpService.get(ENDPOINT, filterBy);
 }
 
 async function getById(id) {
-  try {
-    const res = await axios.get(BASE_URL + id);
-    return res.data;
-  } catch {
-    console.log("error:", err);
-  }
+  return await httpService.get(`${ENDPOINT}/${id}`);
 }
 
-function remove(id) {
-  return axios.delete(BASE_URL + id);
+async function remove(id) {
+  return await httpService.delete(`${ENDPOINT}/${id}`);
 }
 
-function save(toy) {
-  console.log("toy", toy);
-  const savedToy = toy._id
-    ? axios.put(BASE_URL + toy._id, toy)
-    : axios.post(BASE_URL, toy);
-  return savedToy;
+async function save(toy) {
+  return toy._id
+    ? await httpService.put(`${ENDPOINT}/${toy._id}`, toy)
+    : await httpService.post(ENDPOINT, toy);
 }
 
-function getEmptyToy(name = "", price = "", labels = [], inStock = true) {
+function getEmptyToy(name = "", price = 0, labels = [], inStock = true) {
   return {
     name,
     price,
